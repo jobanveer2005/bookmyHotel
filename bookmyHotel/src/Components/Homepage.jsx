@@ -20,11 +20,7 @@ function Homepage() {
     phone: "",
   });
 
-  // === NEW STATE FOR MENU ===
-  // This replaces 'activeSetting', 'showCustomer', and 'showSettings'
-  // 'main' = main nav list
-  // 'profile' = update profile form
-  // 'history' = booking history list
+  // 'main', 'profile', 'history', 'help'
   const [offcanvasView, setOffcanvasView] = useState("main");
   
   const [bookings, setBookings] = useState([]);
@@ -261,6 +257,69 @@ function Homepage() {
           </div>
         );
 
+      // --- (NEW) Help & Support View ---
+      case "help":
+        return (
+          <div className="menu-sub-page">
+            <div className="menu-sub-page-header">
+              <button className="menu-back-btn" onClick={() => setOffcanvasView("main")}>
+                <i className="bi bi-arrow-left"></i>
+              </button>
+              <h5>Help & Support</h5>
+            </div>
+            
+            <div className="p-2" style={{color: "#fff"}}>
+              <p>
+                If you need assistance or have any questions, please
+                don't hesitate to reach out to our support team.
+              </p>
+              
+              <div className="mb-3">
+                <strong>Contact Us:</strong>
+                <ul className="list-unstyled mt-2">
+                  <li>
+                    <i className="bi bi-envelope me-2"></i>
+                    support@bookmyhotel.com
+                  </li>
+                  <li>
+                    <i className="bi bi-telephone me-2"></i>
+                    +91 123 456 7890
+                  </li>
+                </ul>
+              </div>
+
+              {/* Using Bootstrap Accordion for FAQs */}
+              <div className="accordion" id="faqAccordion">
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingOne">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                      How do I cancel a booking?
+                    </button>
+                  </h2>
+                  <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div className="accordion-body" style={{color: "#000"}}>
+                      You can cancel a booking from your "Booking History" page. Please note that cancellations are subject to our cancellation policy.
+                    </div>
+                  </div>
+                </div>
+                <div className="accordion-item">
+                  <h2 className="accordion-header" id="headingTwo">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      How do I update my profile?
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div className="accordion-body" style={{color: "#000"}}>
+                      You can update your name and phone number from the "Update Profile" section in the menu.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        );
+
       // --- Main Menu View ---
       default:
         return (
@@ -304,8 +363,10 @@ function Homepage() {
                 </button>
               </li>
               <li>
+                {/* --- (MODIFIED) --- */}
                 <button
                   className="menu-nav-btn"
+                  onClick={() => setOffcanvasView("help")}
                 >
                   <i className="bi bi-question-circle"></i>
                   Help & Support
@@ -324,7 +385,7 @@ function Homepage() {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
           <img src="/bmH_1.png" alt="Logo" style={{ height: 40, marginRight: 8 }} />
-             bookmyHotel
+            bookmyHotel
           </Link>
           <div className="d-flex align-items-center ms-auto">
             {isLoggedIn ? (
