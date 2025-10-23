@@ -169,6 +169,7 @@ function Homepage() {
         return (
           <div className="menu-sub-page">
             <div className="menu-sub-page-header">
+
               <button className="menu-back-btn" onClick={() => setOffcanvasView("main")}>
                 <i className="bi bi-arrow-left"></i>
               </button>
@@ -323,7 +324,7 @@ function Homepage() {
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
           <img src="/bmH_1.png" alt="Logo" style={{ height: 40, marginRight: 8 }} />
-            BookMyHotel
+             bookmyHotel
           </Link>
           <div className="d-flex align-items-center ms-auto">
             {isLoggedIn ? (
