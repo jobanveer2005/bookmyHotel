@@ -385,6 +385,8 @@ a:hover {
   color: #e5e7eb;
   display: flex;
   flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
 /* Header with "Menu" title */
